@@ -4,12 +4,13 @@ import { LOGO_URL } from "../utils/constants";
 import useOfflineStatus from "../utils/useOfflineStatus";
 import Usercontext from "../utils/UserContext";
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnName, setbtnName] = useState("Login");
   const status = useOfflineStatus();
   const { loggedInUser } = useContext(Usercontext);
-  // console.log(loggedInUser);
+  const cartItems = useSelector((data) => data.cart.items);
 
   return (
     <div className="flex h-[100] bg-gray-300 text-black shadow-xl p-4 justify-between  items-center">
@@ -31,7 +32,10 @@ const Header = () => {
           <li className="hover:text-blue-500">
             <Link to="/Contact">Contact US</Link>
           </li>
-          <li className="hover:text-blue-500">Cart</li>
+
+          <li className="hover:text-blue-500 font-xl font-bold">
+            <Link to="/cart">Cart ({cartItems.length} items)</Link>
+          </li>
           <button
             onClick={() => {
               setbtnName(btnName === "Login" ? "Logout" : "Login");

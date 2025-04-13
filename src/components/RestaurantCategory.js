@@ -1,11 +1,18 @@
+import React from "react";
 import ItemList from "./ItemList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const RestaurantCategory = ({ items, show, setindexItem }) => {
   const [logo, setlogo] = useState("v");
+  
+
+  useEffect(() => {
+    setlogo(show ? "^" : "v");
+  }, [show]);
+
   const handleOnClick = () => {
     setindexItem();
-    setlogo(show ? "v" : "^");
+    window.scrollTo({ top: 200, behavior: "smooth" });
   };
 
   return (
@@ -18,8 +25,14 @@ const RestaurantCategory = ({ items, show, setindexItem }) => {
           {items.title} ({items.itemCards.length})
         </span>
         <span className="animate-bounce">{logo}</span>
+        
       </div>
-      {show && <ItemList key={items.type} data={items.itemCards} />}
+      {show && (
+        <div className="mt-2">
+          
+          <ItemList key={items.type} data={items.itemCards} />
+        </div>
+      )}
     </div>
   );
 };

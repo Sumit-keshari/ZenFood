@@ -12,7 +12,7 @@ const Body = () => {
   const [searchData, setsearchData] = useState("");
   const status = useOfflineStatus();
   const RestaurantWithPromotedLabel = withPromotedLabel(RestaurantCard);
-  const {setuserName}=useContext(Usercontext);
+  const {loggedInUser, setuserName } = useContext(Usercontext);
 
   useEffect(() => {
     fetchData();
@@ -20,14 +20,17 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.9615398&lng=79.2961468&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.4348045&lng=81.84565930000001&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const response = await data?.json();
 
+    // console.log(response);
     const json = response?.data?.cards?.find((item) =>
       item?.card?.card.id?.includes("restaurant_grid_listing")
     )?.card?.card.gridElements?.infoWithStyle?.restaurants;
 
+    // console.log(json);
+    
     setList(json);
     setfiltered(json);
   };
@@ -41,7 +44,7 @@ const Body = () => {
   ) : (
     <div className="items-center justify-center">
       <div className="flex justify-between items-center m-5 shadow">
-        <div className="gap-4 flex">
+        <div className="gap-4 flex items-center justify-center p-5">
           <input
             className="border-2 w-[300px] border-gray-500 p-2 rounded "
             type="text"
@@ -60,6 +63,7 @@ const Body = () => {
             }}
             value={searchData}
           />
+
           <button
             onClick={() => {
               const fiterresto = List.filter((res) => {
@@ -73,7 +77,9 @@ const Body = () => {
           >
             Search
           </button>
+          <label className="py-2 font-bold">USER:</label>
           <input
+          value={loggedInUser}
             onChange={(event) => {
               setuserName(event.target.value);
             }}
