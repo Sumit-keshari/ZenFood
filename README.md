@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # namaste-react
 
 <!-- react code -->
@@ -81,3 +82,7 @@ Redux Toolkit
     Slice (cartSlice)
     dispatch(action)
     Selector -->
+=======
+# ZenFood
+This is my own project. There i am using Reactjs with parcel and live api for showing product photo and item name  
+>>>>>>> 5cbef7313af3a3e834e35fc83dd8d6f3bc9a5052
