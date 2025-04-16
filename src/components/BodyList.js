@@ -12,7 +12,7 @@ const Body = () => {
   const [searchData, setsearchData] = useState("");
   const status = useOfflineStatus();
   const RestaurantWithPromotedLabel = withPromotedLabel(RestaurantCard);
-  const {loggedInUser, setuserName } = useContext(Usercontext);
+  const { loggedInUser, setuserName } = useContext(Usercontext);
 
   useEffect(() => {
     fetchData();
@@ -30,7 +30,7 @@ const Body = () => {
     )?.card?.card.gridElements?.infoWithStyle?.restaurants;
 
     // console.log(json);
-    
+
     setList(json);
     setfiltered(json);
   };
@@ -39,9 +39,11 @@ const Body = () => {
     return <h1>You are offline! Check your internet connection.</h1>;
   }
 
-  return List === 0 ? (
-    <Shimmer />
-  ) : (
+  if (List===0) {
+    return <Shimmer />;
+  }
+
+  return (
     <div className="items-center justify-center">
       <div className="flex justify-between items-center m-5 shadow">
         <div className="gap-4 flex items-center justify-center p-5">
@@ -79,7 +81,7 @@ const Body = () => {
           </button>
           <label className="py-2 font-bold">USER:</label>
           <input
-          value={loggedInUser}
+            value={loggedInUser}
             onChange={(event) => {
               setuserName(event.target.value);
             }}

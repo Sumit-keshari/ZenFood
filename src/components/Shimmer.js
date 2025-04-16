@@ -1,16 +1,26 @@
 const Shimmer = () => {
   return (
     <>
-      <div className="shimmer"></div>
-      <div className="shimmer-container">
-        {Array.from({ length: 8 }, (_, index) => (
-          <div className="shimmer-item" key={index}>
-            <div className="shimmer-item-1"></div>
-          </div>
-        ))}
+      <div className="shadow-lg m-0 p-5 bg-gray-100 w-[100%] h-[700px] flex flex-wrap justify-center items-center">
+        <div className="flex justify-between  items-center h-[100px] w-[100%] shadow-2xl">
+          <span className="w-[20%] h-[50%] m-2 bg-gray-300"></span>
+          <span className="w-[20%] h-[50%] m-2 bg-gray-300"></span>
+          <span className="w-[20%] h-[50%] m-2 bg-gray-300"></span>
+          <span className="w-[20%] h-[50%] m-2 bg-gray-300"></span>
+        </div>
+        <div className="w-[16%] h-[300px] m-3 bg-gray-300"></div>
+        <div className="w-[16%] h-[300px] m-2 bg-gray-300"></div>
+        <div className="w-[16%] h-[300px] m-2 bg-gray-300"></div>
+        <div className="w-[16%] h-[300px] m-2 bg-gray-300"></div>
+        <div className="w-[16%] h-[300px] m-2 bg-gray-300"></div>
+        <div className="w-[16%] h-[300px] m-2 bg-gray-300"></div>
+        <div className="w-[16%] h-[300px] m-2 bg-gray-300"></div>
+        <div className="w-[16%] h-[300px] m-2 bg-gray-300"></div>
+        <div className="w-[16%] h-[300px] m-2 bg-gray-300"></div>
+        <div className="w-[16%] h-[300px] m-2 bg-gray-300"></div>
       </div>
     </>
-  )
+  );
 };
 
 export default Shimmer;
