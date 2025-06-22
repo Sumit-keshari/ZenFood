@@ -1,13 +1,13 @@
 {
-  "name": "zenfood",
+  "name": "namaste-react",
   "version": "1.0.0",
-  "description": "React + Parcel + Tailwind App",
+  "description": "react code",
   "scripts": {
-    "dev": "parcel index.html",
-    "build": "parcel build index.html",
-    "test": "jest"
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html "
   },
-  "author": "Sumit Kesarwani",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
