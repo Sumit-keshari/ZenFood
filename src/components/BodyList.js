@@ -19,27 +19,30 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.4348045&lng=81.84565930000001&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const response = await data?.json();
+    try {
+      const response = await fetch(
+        "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.4348045&lng=81.84565930000001&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      );
 
-    // console.log(response);
-    const json = response?.data?.cards?.find((item) =>
-      item?.card?.card.id?.includes("restaurant_grid_listing")
-    )?.card?.card.gridElements?.infoWithStyle?.restaurants;
+      const result = await response.json();
 
-    // console.log(json);
+      const json = result?.data?.cards?.find((item) =>
+        item?.card?.card?.id?.includes("restaurant_grid_listing")
+      )?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 
-    setList(json);
-    setfiltered(json);
+      setList(json);
+      setfiltered(json);
+    } catch (err) {
+      console.error("Failed to fetch using thingproxy:", err);
+    }
   };
+
 
   if (status === false) {
     return <h1>You are offline! Check your internet connection.</h1>;
   }
 
-  if (List===0) {
+  if (List === 0) {
     return <Shimmer />;
   }
 
